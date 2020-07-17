@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.contrib.syndication.views import Feed, add_domain
 from django.urls import reverse
+#paola from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Atom1Feed
 from django.utils.html import strip_tags
