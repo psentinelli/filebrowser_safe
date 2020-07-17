@@ -11,7 +11,8 @@ from chardet import detect as charsetdetect
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+#paola from django.utils.encoding import python_2_unicode_compatible
+from six import python_2_unicode_compatible
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 
