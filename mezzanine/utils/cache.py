@@ -4,7 +4,7 @@ from hashlib import md5
 from time import time
 
 from django.core.cache import cache
-from django.utils.lru_cache import lru_cache
+#paola from django.utils.lru_cache import lru_cache
 from django.utils.cache import _i18n_cache_key_suffix
 
 from mezzanine.conf import settings
@@ -56,7 +56,7 @@ def cache_get(key):
     return value
 
 
-@lru_cache(maxsize=None)
+#paola  @lru_cache(maxsize=None)
 def cache_installed():
     """
     Returns ``True`` if a cache backend is configured, and the

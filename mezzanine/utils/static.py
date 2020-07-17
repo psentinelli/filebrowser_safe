@@ -3,11 +3,12 @@ Utils for working with static files.
 """
 from __future__ import unicode_literals
 
-from django.contrib.admin.templatetags.admin_static import static
+#paola from django.contrib.admin.templatetags.admin_static import static
+from django.templatetags.static import static
 from django.conf import settings
 from django.utils.functional import lazy
-from django.utils import six
-
+#paola from django.utils import six
+import six
 # The 'static' template tag returns cache-busting file names, which prevents
 # CDN's or browsers from serving old assets.
 # See https://github.com/stephenmcd/mezzanine/pull/1411 for original
