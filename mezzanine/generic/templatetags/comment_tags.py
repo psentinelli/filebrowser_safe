@@ -3,6 +3,7 @@ from future.builtins import int
 
 from collections import defaultdict
 
+#paolafrom django.core.urlresolvers import reverse
 from django.urls import reverse
 from django.template.defaultfilters import linebreaksbr, urlize
 

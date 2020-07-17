@@ -6,6 +6,6 @@ from mezzanine.generic import views
 
 
 urlpatterns = [
-    url(r"^rating/$", views.rating, name="rating"),
-    url(r"^comment/$", views.comment, name="comment"),
+    url("^rating/$", views.rating, name="rating"),
+    url("^comment/$", views.comment, name="comment"),
 ]
