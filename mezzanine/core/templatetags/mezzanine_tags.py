@@ -15,11 +15,14 @@ from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files import File
 from django.core.files.storage import default_storage
+#paola from django.core.urlresolvers import reverse, resolve, NoReverseMatch
+
 from django.urls import reverse, resolve, NoReverseMatch
 from django.db.models import Model
 from django.template import Node, Template, TemplateSyntaxError
-from django.template.base import (TOKEN_BLOCK, TOKEN_COMMENT,
-                                  TOKEN_TEXT, TOKEN_VAR, TextNode)
+from django.template.base import TokenType,TextNode# TOKEN_BLOCK, TOKEN_COMMENT,   TOKEN_TEXT, TOKEN_VAR, TextNode
+
+#from django.template.base import TOKEN_BLOCK, TOKEN_COMMENT,TOKEN_TEXT, TOKEN_VAR, TextNode
 from django.template.defaultfilters import escape
 from django.template.loader import get_template
 from django.utils import translation
@@ -38,7 +41,11 @@ from mezzanine.utils.urls import admin_url, home_slug
 from mezzanine.utils.views import is_editable
 from mezzanine import template
 
-
+TOKEN_TEXT = 0
+TOKEN_VAR = 1
+TOKEN_BLOCK = 2
+TOKEN_COMMENT = 3
+#paola 
 register = template.Library()
 
 

@@ -7,13 +7,14 @@ from django.contrib.auth import logout
 from django.contrib.messages import error
 from django.contrib.redirects.models import Redirect
 from django.core.exceptions import MiddlewareNotUsed
+#paola from django.core.urlresolvers import reverse, resolve
 from django.urls import reverse, resolve
 from django.http import (HttpResponse, HttpResponseRedirect,
                          HttpResponsePermanentRedirect, HttpResponseGone)
 from django.middleware.csrf import CsrfViewMiddleware, get_token
 from django.template import Template, RequestContext
 from django.utils.cache import get_max_age
-from django.utils.lru_cache import lru_cache
+#paola from django.utils.lru_cache import lru_cache
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -189,7 +190,7 @@ class UpdateCacheMiddleware(MiddlewareMixin):
         return response
 
 
-@lru_cache(maxsize=None)
+#@lru_cache(maxsize=None)
 def csrf_middleware_installed():
     csrf_mw_name = "django.middleware.csrf.CsrfViewMiddleware"
     return middlewares_or_subclasses_installed([csrf_mw_name])

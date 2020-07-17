@@ -7,6 +7,7 @@ from mezzanine.conf import settings
 from mezzanine.core import views as core_views
 
 
+
 urlpatterns = []
 
 if "django.contrib.admin" in settings.INSTALLED_APPS:

@@ -4,8 +4,6 @@ import re
 import pytz
 from unittest import skipUnless
 
-from django.utils.encoding import force_str
-
 from mezzanine.core.middleware import FetchFromCacheMiddleware
 from mezzanine.core.templatetags.mezzanine_tags import initialize_nevercache
 from mezzanine.utils.cache import cache_installed
@@ -26,7 +24,7 @@ from django.contrib.sites.models import Site
 from django.core import mail
 from django.core.exceptions import ValidationError
 from django.core.management import call_command, CommandError
-from django.urls import reverse
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.forms import Textarea
 from django.forms.models import modelform_factory
@@ -169,7 +167,7 @@ class CoreTests(TestCase):
         # Test ordering without age scaling.
         settings.SEARCH_AGE_SCALE_FACTOR = 0
         RichTextPage.objects.filter(id=first).update(
-            publish_date=now() - timedelta(days=3))
+            publish_date=datetime(2017, 1, 1, tzinfo=pytz.utc))
         RichTextPage.objects.filter(id=second).update(
             publish_date=datetime(2016, 1, 1, tzinfo=pytz.utc))
         results = RichTextPage.objects.search("test")
@@ -302,8 +300,8 @@ class CoreTests(TestCase):
 
     def _get_csrftoken(self, response):
         csrf = re.findall(
-            br"<input type='hidden' name='csrfmiddlewaretoken' "
-            br"value='([^']+)' />",
+            b'\<input type\=\'hidden\' name\=\'csrfmiddlewaretoken\' '
+            b'value\=\'([^"\']+)\' \/\>',
             response.content
         )
         self.assertEqual(len(csrf), 1, 'No csrfmiddlewaretoken found!')
@@ -311,7 +309,7 @@ class CoreTests(TestCase):
 
     def _get_formurl(self, response):
         action = re.findall(
-            br'<form action="([^"]*)" method="post">',
+            b'\<form action\=\"([^\"]*)\" method\=\"post\"\>',
             response.content
         )
         self.assertEqual(len(action), 1, 'No form with action found!')
@@ -333,11 +331,11 @@ class CoreTests(TestCase):
         response = self.client.get('/admin/', follow=True)
         self.assertContains(response, u'Forgot password?')
         url = re.findall(
-            b'<a href=["\']([^\'"]+)["\']>Forgot password\\?</a>',
+            b'\<a href\=["\']([^\'"]+)["\']\>Forgot password\?\<\/a\>',
             response.content
         )
         self.assertEqual(len(url), 1)
-        url = force_str(url[0])
+        url = url[0]
 
         # Go to reset-page, submit form
         response = self.client.get(url)
@@ -357,7 +355,7 @@ class CoreTests(TestCase):
             r'http://example.com((?:/\w{2,3})?/reset/[^/]+/[^/]+/)',
             mail.outbox[0].body
         )[0]
-        response = self.client.get(url, follow=True)
+        response = self.client.get(url)
         csrf = self._get_csrftoken(response)
         url = self._get_formurl(response)
         response = self.client.post(url, {
@@ -594,7 +592,7 @@ class CSRFTestViews(object):
         return HttpResponse(rendered)
 
     urlpatterns = [
-        url(r"^nevercache_view/", nevercache_view),
+        url("^nevercache_view/", nevercache_view),
     ]
 
 
