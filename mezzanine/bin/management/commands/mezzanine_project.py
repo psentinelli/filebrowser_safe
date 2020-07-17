@@ -7,7 +7,8 @@ from tempfile import mkdtemp
 
 from django.core.management import CommandError
 from django.core.management.commands.startproject import Command as BaseCommand
-from django.utils import six
+#paola from django.utils 
+import six
 from django.utils.crypto import get_random_string
 
 import mezzanine
