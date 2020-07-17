@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 
 from warnings import warn
 
-from django.utils.encoding import python_2_unicode_compatible
-
+#paola from django.utils.encoding import python_2_unicode_compatible
+from six import python_2_unicode_compatible
 
 # Deprecated settings and their defaults.
 DEPRECATED = {}
