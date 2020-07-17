@@ -15,7 +15,7 @@ from django.utils.functional import cached_property
 try:
     from django.utils.encoding import smart_text
 except ImportError:
-    # Backward compatibility for Py2 and Django < 1.5
+    # Backward compatibility  for Py2 and Django < 1.5
     from django.utils.encoding import smart_unicode as smart_text
 
 from filebrowser_safe.functions import get_file_type, path_strip, get_directory
